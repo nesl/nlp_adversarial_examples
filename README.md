@@ -27,7 +27,7 @@ python train_model.py
 
 6)Download the Google language model.
 ```
-download_googlm.sh
+./download_googlm.sh
 ```
 
 7) Pre-compute the distances between embeddings of different words (required to do the attack) and save the distance matrix.
