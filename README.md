@@ -20,7 +20,7 @@ python build_embeddings.py
 
 That will take like a minute, and it will tokenize the dataset and save it to a pickle file. It will also compute some auxiliary files like the matrix of the vector embeddings for words in our dictionary. All files will be saved under `aux_files` directory created by this script.
 
-5) Train the sentimenet analysis model.
+5) Train the sentiment analysis model.
 ```
 python train_model.py
 ```
