@@ -45,9 +45,17 @@ def create_embeddings_matrix(glove_model, dictionary, full_dictionary, d=300):
     return embedding_matrix, unfound
 
 
-def pick_most_similar_words(src_word, dist_mat, ret_count=10):
+def pick_most_similar_words(src_word, dist_mat, ret_count=10, threshold=None):
     """
     embeddings is a matrix with (d, vocab_size)
     """
     dist_order = np.argsort(dist_mat[src_word,:])[1:1+ret_count]
-    return dist_order, dist_mat[src_word][dist_order]
+    dist_list = dist_mat[src_word][dist_order]
+    if dist_list[-1] == 0:
+        return [], []
+    mask = np.ones_like(dist_list)
+    if threshold is not None:
+        mask = np.where(dist_list < threshold)
+        return dist_order[mask], dist_list[mask]
+    else:
+        return dist_order, dist_list
