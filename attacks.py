@@ -31,7 +31,7 @@ class GeneticAtack(object):
         self.top_n2 = n2
         self.use_lm = use_lm
         self.use_suffix = use_suffix
-        self.temp = 3.0
+        self.temp = 0.3
 
     def do_replace(self, x_cur, pos, new_word):
         x_new = x_cur.copy()
@@ -94,7 +94,11 @@ class GeneticAtack(object):
         #                     x_cur[idx] not in self.skip_list
         #            ]
         rand_idx = np.random.choice(x_len, 1, p=w_select_probs)[0]
-        while x_cur[rand_idx] != x_orig[rand_idx]:
+        while x_cur[rand_idx] != x_orig[rand_idx] and np.sum(x_orig != x_cur) < np.sum(np.sign(w_select_probs)):
+            # The conition above has a quick hack to prevent getting stuck in infinite loop while processing too short examples
+            # and all words `excluding articles` have been already replaced and still no-successful attack found.
+            # a more elegent way to handle this could be done in attack to abort early based on the status of all population members
+            # or to improve select_best_replacement by making it schocastic. 
             rand_idx = np.random.choice(x_len, 1, p=w_select_probs)[0]
 
         # src_word = x_cur[rand_idx]

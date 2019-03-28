@@ -36,6 +36,6 @@ python train_model.py
 python compute_dist_mat.py 
 
 ```
-8) Now, we are ready to try some attacks ! You can do so by running the `AttackDemo.ipynb` jupyter notebook !
+8) Now, we are ready to try some attacks ! You can do so by running the `IMDB_AttackDemo.ipynb` jupyter notebook !
 
 
