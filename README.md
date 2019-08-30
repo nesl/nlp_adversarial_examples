@@ -36,6 +36,33 @@ python train_model.py
 python compute_dist_mat.py 
 
 ```
-8) Now, we are ready to try some attacks ! You can do so by running the `IMDB_AttackDemo.ipynb` jupyter notebook !
+8) Now, we are ready to try some attacks ! You can do so by running the [`IMDB_AttackDemo.ipynb`](IMDB_AttackDemo.ipynb) Jupyter notebook !
 
 
+### Attacking Textual Entailment model
+
+The model we are using for our experiment is the SNLI model of [Keras SNLI Model](https://github.com/Smerity/keras_snli) .
+
+First, Download the dataset using 
+```
+bash download_snli_data.sh
+```
+
+Download the Glove and Counter-fitted Glove embedding vectors
+
+```
+bash ./download_glove.sh
+bash ./download_counterfitted_vectors.sh
+```
+
+Train the NLI model
+```
+python sni_rnn.py
+```
+
+Pre-compute the embedding matrix 
+```
+python nli_compute_dist_matrix.py
+```
+
+Now, you are ready to run the attack using example code provided in [`NLI_AttackDemo.ipynb`](NLI_AttackDemo.ipynb) Jupyter notebook.
